@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan 31 10:22:26 2024
 
 @author: Adele Ravagnani
 
-Zero Intelligence model.
+Standard Santa Fe model.
 In this file there is the implementation of a function for the estimation of the parameters.
 
 Reference to the Chapter 8 of the book "Trades, Quotes and Prices. Financial Markets Under the Microscope"
@@ -15,9 +14,9 @@ by Jean-Philippe Bouchaud, Julius Bonart, Jonathan Donier, Martin Gould.
 import numpy as np
 
 #%%
-def estimate_parameters_ZeroIntelligence(LOB_data, verbose = True):
+def estimate_parameters_SantaFe(LOB_data, verbose = True):
     """
-    Function which allows to fit the Zero Intelligence model to empirical data.
+    Function which allows to fit the Santa Fe model to empirical data.
 
     Parameters
     ----------
