@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov 22 15:58:55 2023
 
 @author: Adele Ravagnani
 
