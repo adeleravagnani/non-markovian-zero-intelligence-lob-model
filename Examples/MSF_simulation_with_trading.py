@@ -84,7 +84,7 @@ iterations_to_equilibrium = 20_000
 iterations_before_trading = 20_000
 N_sim = 200
 
-folder = '/home/adeleravagnani/LOB_simulator_Final/Codes_for_Github/Examples/'
+folder = '/adeleravagnani/modified-santa-fe-lob-simulator/Examples/'
 
 parameters_trading_strategy = [trading_interval, total_shares, direction_trades_user]  
         
