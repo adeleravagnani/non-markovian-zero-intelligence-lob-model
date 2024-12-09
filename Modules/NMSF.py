@@ -17,8 +17,8 @@ from tqdm import tqdm
 import warnings
 
 import sys
-sys.path.append('/adeleravagnani/modified-santa-fe-lob-simulator/Modules/')
-import MSF_trading as MSF_t
+sys.path.append('/adeleravagnani/Non-narkovian-santa-fe-lob-simulator/Modules/')
+import NMSF_trading as NMSF_t
 
 #%%
 
@@ -867,7 +867,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
 
     [trading_interval, total_childMOs_trading, direction] = parameters_trading_strategy
     
-    NaiveTrading_class = MSF_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
+    NaiveTrading_class = NMSF_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
 
     print('Let us simulate the modified Santa Fe model with the execution of a meta order and a naive trading strategy.')
     print('We initialize the LOB ...')
