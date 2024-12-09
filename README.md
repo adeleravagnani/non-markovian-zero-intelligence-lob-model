@@ -14,4 +14,4 @@ The folder "Examples" consists of:
 
  If you use the code in your work, please cite its location on Github: https://github.com/adeleravagnani/non-markovian-santa-fe-lob-simulator and the paper: ...
 
- If you have any inquiries or remarks, do not hesitate to contact Adele Ravagnani (adele.ravagnani@sns.it).
+ If you have any inquiries or remarks, do not hesitate to contact the author Adele Ravagnani (adele.ravagnani@sns.it).
