@@ -1,6 +1,6 @@
-# modified-santa-fe-lob-simulator
+# non-markovian-santa-fe-lob-simulator
 
-This repository contains the implementation (in Python) of the modified Santa Fe model, introduced in the paper: ...
+This repository contains the implementation (in Python) of the Non-Markovian Santa Fe model, introduced in the paper: ...
 
 The folder "Modules" consists of 4 modules:
   1) "LOB_data.py" defines a class to load and clean a LOBSTER dataset;
