@@ -5,7 +5,7 @@
 
 This module contains a class which allows to perform the execution of a meta order with a naive trading strategy.
 The trading is split in equally spaced (by a given trading interval) child MOs of unitary size and equal direction.
-This class is employed by the function "simulate_LOB_and_NaiveTrading" in the "MSF.py" module.
+This class is employed by the function "simulate_LOB_and_NaiveTrading" in the "NMSF.py" module.
 
 """
 import numpy as np
@@ -50,7 +50,7 @@ class NaiveTrading:
         Parameters
         ----------
         LOB_simulation : class
-            This is the class defined in "MSF.py"; it represents the LOB and stores its evolution.
+            This is the class defined in "NMSF.py"; it represents the LOB and stores its evolution.
 
         Raises
         ------
