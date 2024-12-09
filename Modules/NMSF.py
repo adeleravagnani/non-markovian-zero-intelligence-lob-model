@@ -3,7 +3,7 @@
 
 @author: Adele Ravagnani
 
-This module contains the implementation of the modified Santa Fe model.
+This module contains the implementation of the Non-Markovian Santa Fe model.
 Simulations can be performed by means of the functions:
     1) "simulate_LOB", without any execution of meta orders;
     2) "simulate_LOB_and_NaiveTrading" which allows to interact with the simulator and execute a meta order.
