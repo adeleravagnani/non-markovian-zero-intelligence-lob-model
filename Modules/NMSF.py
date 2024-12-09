@@ -78,7 +78,7 @@ class LOB_simulation:
         self.message_df_simulation = None
         self.ob_df_simulation = None
         
-        #Parameters of the modified Santa Fe model
+        #Parameters of the Non-Markovian Santa Fe model
         self.beta_exp_weighted_return = beta_exp_weighted_return 
         self.gamma_exp_weighted_return = np.exp(-self.beta_exp_weighted_return)
         self.intensity_exp_weighted_return = intensity_exp_weighted_return
@@ -689,7 +689,7 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
                  path_save_files = None, label_simulation = None, beta_exp_weighted_return = 1e-3, intensity_exp_weighted_return = 1e-3):
     
     """
-    This function allows to simulate the LOB evolution with the modified Santa Fe model.
+    This function allows to simulate the LOB evolution with the Non-Markovian Santa Fe model.
 
     Parameters
     ----------
@@ -739,7 +739,7 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
 
     """
 
-    print('Let us simulate the modified Santa Fe model.')
+    print('Let us simulate the Non-Markovian Santa Fe model.')
     print('We initialize the LOB ...')
     
     LOB_sim = LOB_simulation(number_tick_levels, n_priority_ranks, p0, v0, number_levels_to_store, beta_exp_weighted_return, intensity_exp_weighted_return) 
@@ -802,7 +802,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
                                   beta_exp_weighted_return = 1e-3, 
                                   intensity_exp_weighted_return = 1e-3):
     """
-    This function allows to interact with the modified Santa Fe simulator.
+    This function allows to interact with the Non-Markovian Santa Fe simulator.
     Indeed, the LOB evolution is simulated while a meta order is executed with a naive trading strategy. The trading is split in equally spaced (by a given trading interval) child MOs of unitary size and equal direction.
 
     Parameters
@@ -869,7 +869,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
     
     NaiveTrading_class = NMSF_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
 
-    print('Let us simulate the modified Santa Fe model with the execution of a meta order and a naive trading strategy.')
+    print('Let us simulate the Non-Markovian Santa Fe model with the execution of a meta order and a naive trading strategy.')
     print('We initialize the LOB ...')
     
     LOB_sim = LOB_simulation(number_tick_levels, n_priority_ranks, p0, v0, 
