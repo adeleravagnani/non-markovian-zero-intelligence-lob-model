@@ -2,7 +2,7 @@
 """
 @author: Adele Ravagnani
 
-This is a script which shows how to run a simulation with the modified Santa Fe model while executing a meta order.
+This is a script which shows how to run a simulation with the Non-Markovian Santa Fe model while executing a meta order.
 It produces 2 plots:
 1) the mid-price paths for all simulations and its mean (before, during and after the execution);
 2) the path of the exponential weighted mid-price return $\bar{R}_t$ (during and after the execution).
@@ -16,8 +16,8 @@ import multiprocessing as mp
 import itertools
 
 import sys
-sys.path.append('/adeleravagnani/modified-santa-fe-lob-simulator/Modules')
-import MSF
+sys.path.append('/adeleravagnani/non-markovian-santa-fe-lob-simulator/Modules')
+import NMSF
 
 time_0 = time.time()
 print('Time start:', time_0, 's')
@@ -32,7 +32,7 @@ def simulation_parallel(lam, mu, delta, mean_inter_arrival_times, number_tick_le
   
   try:                      
     [message_df_simulation, ob_df_simulation, NaiveTrading_class, 
-         i_stop_trading, exp_weighted_return_list] = MSF.simulate_LOB_and_NaiveTrading(lam, mu, 
+         i_stop_trading, exp_weighted_return_list] = NMSF.simulate_LOB_and_NaiveTrading(lam, mu, 
                                                                       delta, 
                                                                       mean_inter_arrival_times, 
                                                                       number_tick_levels, n_priority_ranks, 
@@ -84,7 +84,7 @@ iterations_to_equilibrium = 20_000
 iterations_before_trading = 20_000
 N_sim = 200
 
-folder = '/adeleravagnani/modified-santa-fe-lob-simulator/Examples/'
+folder = '/adeleravagnani/non-markovian-santa-fe-lob-simulator/Examples/'
 
 parameters_trading_strategy = [trading_interval, total_shares, direction_trades_user]  
         
