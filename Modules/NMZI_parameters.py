@@ -3,7 +3,7 @@
 
 @author: Adele Ravagnani
 
-In this module there is a function which allows to estimate the parameters of the Santa Fe model.
+In this module there is a function which allows to estimate the parameters of the Zero Intelligence Santa Fe model.
 
 Reference to the Chapter 8 of the book: Bouchaud, J.-P., Bonart, J., Donier, J., & Gould, M. (2018). Trades, quotes and prices: Financial markets under the microscope. Cambridge University Press.
 
@@ -12,9 +12,9 @@ Reference to the Chapter 8 of the book: Bouchaud, J.-P., Bonart, J., Donier, J.,
 import numpy as np
 
 #%%
-def estimate_parameters_SantaFe(LOB_data, verbose = True):
+def estimate_parameters_ZI(LOB_data, verbose = True):
     """
-    Function which allows to fit the Santa Fe model to empirical data.
+    Function which allows to fit the Zero Intelligence Santa Fe model to empirical data.
 
     Parameters
     ----------
