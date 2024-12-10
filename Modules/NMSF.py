@@ -3,7 +3,7 @@
 
 @author: Adele Ravagnani
 
-This module contains the implementation of the Non-Markovian Santa Fe model.
+This module contains the implementation of the Non-Markovian Zero Intelligence model.
 Simulations can be performed by means of the functions:
     1) "simulate_LOB", without any execution of meta orders;
     2) "simulate_LOB_and_NaiveTrading" which allows to interact with the simulator and execute a meta order.
@@ -52,7 +52,7 @@ class LOB_simulation:
             This is the beta parameter entering the definition of the exponentially weighted mid-price return ("exp_weighted_return_to_store").
         intensity_exp_weighted_return : float
             This is the intensity parameter (alpha) which enters the definition of the probability of a sell LO at time t given a LO at time t.
-            If intensity_exp_weighted_return = 0, we recover the standard Santa Fe model.
+            If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence Santa Fe model.
 
         Returns
         -------
@@ -78,7 +78,7 @@ class LOB_simulation:
         self.message_df_simulation = None
         self.ob_df_simulation = None
         
-        #Parameters of the Non-Markovian Santa Fe model
+        #Parameters of the Non-Markovian Zero Intelligence model
         self.beta_exp_weighted_return = beta_exp_weighted_return 
         self.gamma_exp_weighted_return = np.exp(-self.beta_exp_weighted_return)
         self.intensity_exp_weighted_return = intensity_exp_weighted_return
@@ -149,7 +149,7 @@ class LOB_simulation:
         Each column of this matrix contains the volumes of the orders related to a given queue.
         These orders are ordered on a time-priority basis.
         E.g. element (0, 0) stores the volume of the order with top priority at the deeper price level in the bid side of the grid which represents our LOB.
-        We observe that storing these information is not necessary for simulating the Santa Fe model. However, it can be useful if extensions of it are devised or different trading strategies are tested.
+        We observe that storing these information is not necessary for simulating the Non-Markovian Zero Intelligence model. However, it can be useful if extensions of it are devised or different trading strategies are tested.
 
         Returns
         -------
@@ -689,7 +689,7 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
                  path_save_files = None, label_simulation = None, beta_exp_weighted_return = 1e-3, intensity_exp_weighted_return = 1e-3):
     
     """
-    This function allows to simulate the LOB evolution with the Non-Markovian Santa Fe model.
+    This function allows to simulate the LOB evolution with the Non-Markovian Zero Intelligence model.
 
     Parameters
     ----------
@@ -725,7 +725,7 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
         The default is 1e-3.
     intensity_exp_weighted_return : float
         This is the intensity parameter (alpha) which enters the definition of the probability of a sell LO at time t given a LO at time t.
-        If intensity_exp_weighted_return = 0, we recover the standard Santa Fe model. 
+        If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence Santa Fe model. 
         The default is 1e-3.
 
     Returns
@@ -739,7 +739,7 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
 
     """
 
-    print('Let us simulate the Non-Markovian Santa Fe model.')
+    print('Let us simulate the Non-Markovian Zero Intelligence model.')
     print('We initialize the LOB ...')
     
     LOB_sim = LOB_simulation(number_tick_levels, n_priority_ranks, p0, v0, number_levels_to_store, beta_exp_weighted_return, intensity_exp_weighted_return) 
@@ -802,7 +802,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
                                   beta_exp_weighted_return = 1e-3, 
                                   intensity_exp_weighted_return = 1e-3):
     """
-    This function allows to interact with the Non-Markovian Santa Fe simulator.
+    This function allows to interact with the Non-Markovian Zero Intelligence simulator.
     Indeed, the LOB evolution is simulated while a meta order is executed with a naive trading strategy. The trading is split in equally spaced (by a given trading interval) child MOs of unitary size and equal direction.
 
     Parameters
@@ -847,7 +847,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
         The default is 1e-3.
     intensity_exp_weighted_return : float
         This is the intensity parameter (alpha) which enters the definition of the probability of a sell LO at time t given a LO at time t.
-        If intensity_exp_weighted_return = 0, we recover the standard Santa Fe model. 
+        If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence Santa Fe model. 
         The default is 1e-3.
 
     Returns
@@ -869,7 +869,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
     
     NaiveTrading_class = NMSF_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
 
-    print('Let us simulate the Non-Markovian Santa Fe model with the execution of a meta order and a naive trading strategy.')
+    print('Let us simulate the Non-Markovian Zero Intelligence model with the execution of a meta order and a naive trading strategy.')
     print('We initialize the LOB ...')
     
     LOB_sim = LOB_simulation(number_tick_levels, n_priority_ranks, p0, v0, 
