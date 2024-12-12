@@ -9,6 +9,8 @@ Simulations can be performed by means of the functions:
     2) "simulate_LOB_and_NaiveTrading" which allows to interact with the simulator and execute a meta order.
 These two functions employ the class "LOB_simulation" that represents the LOB and stores its updates during the simulation.
 
+Reference to https://github.com/pspinaunipi/Deep_Ratio
+
 """
 
 import pandas as pd
