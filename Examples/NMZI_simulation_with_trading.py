@@ -15,7 +15,7 @@ import multiprocessing as mp
 import itertools
 
 import sys
-sys.path.append('/adeleravagnani/non-markovian-zero-intelligence-lob-simulator/Modules')
+sys.path.append('/adeleravagnani/non-markovian-zero-intelligence-lob-model/Modules')
 import NMZI
 
 #%%
