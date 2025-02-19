@@ -10,7 +10,7 @@ The folder "Modules" consists of 4 modules:
 
 The folder "Examples" consists of:
   1) One Jupyter notebook where a LOBSTER data set is loaded, cleaned and the parameters of the model are estimated;
-  2) One script which shows how to run a simulation with the Non-Markovian Zero Intelligence model while executing a metaorder.
+  2) One script which shows how to run a simulation with the NMZI model while executing a metaorder.
 
  If you use the code in your work, please cite its location on Github: https://github.com/adeleravagnani/non-markovian-zero-intelligence-lob-simulator and the paper: ...
 
