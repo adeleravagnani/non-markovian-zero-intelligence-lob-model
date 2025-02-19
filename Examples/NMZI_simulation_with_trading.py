@@ -2,7 +2,7 @@
 """
 @author: Adele Ravagnani
 
-This is a script which shows how to run a simulation with the Non-Markovian Zero Intelligence model while executing a meta order.
+This is a script which shows how to run a simulation with the Non-Markovian Zero Intelligence model while executing a metaorder.
 It produces 2 plots:
 1) the mid-price paths for all simulations and its mean (before, during and after the execution);
 2) the path of the exponential weighted mid-price return $\bar{R}_t$ (during and after the execution).
@@ -11,16 +11,12 @@ It produces 2 plots:
 
 import matplotlib.pyplot as plt
 import numpy as np
-import time
 import multiprocessing as mp
 import itertools
 
 import sys
 sys.path.append('/adeleravagnani/non-markovian-zero-intelligence-lob-simulator/Modules')
 import NMZI
-
-time_0 = time.time()
-print('Time start:', time_0, 's')
 
 #%%
 def simulation_parallel(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n_priority_ranks, 
@@ -61,11 +57,9 @@ lam = 0.0131
 mu = 0.0441
 delta = 0.1174
 v_0 = 101.1057
-avg_spread = 17
 mean_inter_arrival_times = 0.0951
 
 number_tick_levels = 300
-print('Number of tick levels:', number_tick_levels)
 number_levels_to_store = 20
 n_priority_ranks = 100
 p0 = 20877
@@ -126,6 +120,3 @@ plt.xlabel(r'$t$ (market event)')
 plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
 plt.savefig(folder + 'exp_weighted_return.jpeg', dpi = 300)
 plt.close()
-        
-print('Time end:', time.time(), 's') 
-print('Duration:', time.time() - time_0, 's') 
