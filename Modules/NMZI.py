@@ -19,7 +19,7 @@ from tqdm import tqdm
 import warnings
 
 import sys
-sys.path.append('/adeleravagnani/non-markovian-santa-fe-lob-simulator/Modules/')
+sys.path.append('/adeleravagnani/non-markovian-zero-intelligence-lob-simulator/Modules/')
 import NMSF_trading as NMSF_t
 
 #%%
