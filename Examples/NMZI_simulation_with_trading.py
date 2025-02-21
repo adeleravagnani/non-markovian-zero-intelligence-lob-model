@@ -78,7 +78,7 @@ iterations_to_equilibrium = 20_000
 iterations_before_trading = 20_000
 N_sim = 200
 
-folder = '/adeleravagnani/non-markovian-zero-intelligence-lob-simulator/Examples/'
+folder = '/adeleravagnani/non-markovian-zero-intelligence-lob-model/Examples/'
 
 parameters_trading_strategy = [trading_interval, total_shares, direction_trades_user]  
         
@@ -114,7 +114,6 @@ plt.close()
 plt.figure()
 plt.grid()
 plt.errorbar([k + iterations_before_trading + 1 for k in range(len(exp_weighted_return_list_store))], exp_weighted_return_list_store, yerr = exp_weighted_return_list_store_std_err, fmt = 'o--', elinewidth = 0.6, ms = 2)
-
 plt.ylabel(r'$\bar{R}_t$')
 plt.xlabel(r'$t$ (market event)')
 plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
