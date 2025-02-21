@@ -5,8 +5,8 @@
 
 This module contains the implementation of the Non-Markovian Zero Intelligence model.
 Simulations can be performed by means of the functions:
-    1) "simulate_LOB", without any execution of meta orders;
-    2) "simulate_LOB_and_NaiveTrading" which allows to interact with the simulator and execute a meta order.
+    1) "simulate_LOB", without any execution of metaorders;
+    2) "simulate_LOB_and_NaiveTrading" which allows to interact with the simulator and execute a metaorder.
 These two functions employ the class "LOB_simulation" that represents the LOB and stores its updates during the simulation.
 
 Reference to https://github.com/pspinaunipi/Deep_Ratio.
@@ -54,7 +54,7 @@ class LOB_simulation:
             This is the beta parameter entering the definition of the exponentially weighted mid-price return ("exp_weighted_return_to_store").
         intensity_exp_weighted_return : float
             This is the intensity parameter (alpha) which enters the definition of the probability of a sell LO at time t given a LO at time t.
-            If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence Santa Fe model.
+            If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence model.
 
         Returns
         -------
@@ -96,7 +96,7 @@ class LOB_simulation:
         """
         This function initializes: 
             1) "ob_dict" that is dictionary where we store the prices and volumes for the first "number_levels_to_store" levels;
-            2) "message_dict" that is a dictionary which stores the detials of each event.
+            2) "message_dict" that is a dictionary which stores the details of each event.
         These two dictionaries are analogous to the message and order book file of the LOBSTER data.
         
         Returns
@@ -131,7 +131,7 @@ class LOB_simulation:
         This function initializes "lob_state" that is an array where each entry stores the volume of the orders associated to a given price.
         Negative volumes are associated to the ask side and positive to the bid side.
         
-        By referring to Bouchaud et al.. 2018, "we choose the initial state of the LOB such that each price level is occupied by exactly one limit order. 
+        By referring to Bouchaud et al. 2018, "we choose the initial state of the LOB such that each price level is occupied by exactly one limit order. 
         Because small-tick LOBs exhibit gaps between occupied price levels and because each price level in large-tick LOBs is typically occupied by multiple limit orders, this initial condition in fact corresponds to a rare out-of-equilibrium state whose evolution allows one to track the equilibration process."        
 
         Returns
@@ -513,9 +513,7 @@ class LOB_simulation:
         """
 
         if priority_rank < self.n_priority_ranks:
-            self.priorities_lob_state[priority_rank:-1, 
-                    order_price] = self.priorities_lob_state[priority_rank + 1:, 
-                                                           order_price]
+            self.priorities_lob_state[priority_rank:-1, order_price] = self.priorities_lob_state[priority_rank + 1:, order_price]
             self.priorities_lob_state[-1, order_price] = 0
         else:
             warnings.warn('Cannot find order in the queues.')
@@ -554,7 +552,7 @@ class LOB_simulation:
         n_orders_ask = (np.abs(self.lob_state[self.lob_state < 0])).sum()
         
         #store the mid-price in the same reference frame (i.e. before centering the lob state)
-        #this mid-price will be employed to compute the returns which have to be used online to sample the LOs' signs
+        #this mid-price will be employed to compute the returns which have to be used to sample the LOs' signs
         self.mid_price_to_store['Previous'] = self.compute_mid_price() 
         
         flag = False
@@ -611,7 +609,7 @@ class LOB_simulation:
             self.remove_order_from_queue(order_price, priority_rank)
         
         #store the mid-price in the same reference frame (i.e. before centering the lob state)
-        #this mid-price will be employed to compute the returns which have to be used online to sample the LOs' signs
+        #this mid-price will be employed to compute the returns which have to be used to sample the LOs' signs
         self.mid_price_to_store['Current'] = self.compute_mid_price()
         
         self.exp_weighted_return_to_store = self.gamma_exp_weighted_return*self.exp_weighted_return_to_store + (self.mid_price_to_store['Current'] - self.mid_price_to_store['Previous'])
@@ -662,8 +660,7 @@ class LOB_simulation:
         self.message_df_simulation = pd.DataFrame(self.message_dict).iloc[:i_cut + 1, :]
         self.ob_df_simulation = pd.DataFrame(self.ob_dict).iloc[:i_cut + 1, :]
         
-        self.message_df_simulation['Type'].replace([0, 1, 2, 3, 4, 5], 
-                                ['LO', 'MO', 'C', 'LOUser', 'AggressiveMOUser', 'PassiveMOUser'], inplace = True)
+        self.message_df_simulation['Type'].replace([0, 1, 2, 3, 4, 5], ['LO', 'MO', 'C', 'LOUser', 'AggressiveMOUser', 'PassiveMOUser'], inplace = True)
         
         # Correct prices
         increment_prices = self.message_df_simulation["Shift"].cumsum() + self.p0
@@ -716,7 +713,7 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
         This the unitary size of the orders. The default is 1.
     iterations : int, optional
         This is the number of iterations in our simulation. The default is 50_000.
-    iterations_to_equilibrium : TYPE, optional
+    iterations_to_equilibrium : int, optional
         This is the number of iterations to reach equilibrium (their outputs are not saved). The default is 10_000.
     path_save_files : str 
         It is the path of the folder where the files have to be saved.
@@ -726,8 +723,8 @@ def simulate_LOB(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n
         This is the beta parameter entering the definition of the exponentially weighted mid-price return ("exp_weighted_return_to_store").
         The default is 1e-3.
     intensity_exp_weighted_return : float
-        This is the intensity parameter (alpha) which enters the definition of the probability of a sell LO at time t given a LO at time t.
-        If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence Santa Fe model. 
+        This is the intensity parameter (alpha) which enters the definition of the probability that a LO is a sell.
+        If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence model. 
         The default is 1e-3.
 
     Returns
@@ -805,7 +802,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
                                   intensity_exp_weighted_return = 1e-3):
     """
     This function allows to interact with the Non-Markovian Zero Intelligence simulator.
-    Indeed, the LOB evolution is simulated while a meta order is executed with a naive trading strategy. The trading is split in equally spaced (by a given trading interval) child MOs of unitary size and equal direction.
+    Indeed, the LOB evolution is simulated while a metaorder is executed with a naive trading strategy. The trading is split in equally spaced (by a given trading interval) child MOs of unitary size and equal direction.
 
     Parameters
     ----------
@@ -848,8 +845,8 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
         This is the beta parameter entering the definition of the exponentially weighted mid-price return ("exp_weighted_return_to_store").
         The default is 1e-3.
     intensity_exp_weighted_return : float
-        This is the intensity parameter (alpha) which enters the definition of the probability of a sell LO at time t given a LO at time t.
-        If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence Santa Fe model. 
+        This is the intensity parameter (alpha) which enters the definition of the probability that a LO is a sell.
+        If intensity_exp_weighted_return = 0, we recover the standard Zero Intelligence model. 
         The default is 1e-3.
 
     Returns
@@ -863,7 +860,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
     i_stop_trading : int
         Number of the iteration which corresponds to the end of trading.
     exp_weighted_return_list : list
-        It stores the exponentially weighted mid-price return for each iteration in the simulation.
+        It stores the exponentially weighted mid-price return for each iteration after the beginning of the execution of the metaorder.
         
     """
 
@@ -871,7 +868,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
     
     NaiveTrading_class = NMSF_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
 
-    print('Let us simulate the Non-Markovian Zero Intelligence model with the execution of a meta order and a naive trading strategy.')
+    print('Let us simulate the Non-Markovian Zero Intelligence model with the execution of a metaorder and a naive trading strategy.')
     print('We initialize the LOB ...')
     
     LOB_sim = LOB_simulation(number_tick_levels, n_priority_ranks, p0, v0, 
