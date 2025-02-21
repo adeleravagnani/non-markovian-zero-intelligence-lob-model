@@ -6,7 +6,7 @@ The folder "Modules" consists of 4 modules:
   1) "LOB_data.py" defines a class to load and clean a LOBSTER data set;
   2) "NMZI_parameters.py" allows to estimate the parameters of the model;
   3) "NMZI.py" is the core module and contains the implementation of the model. Simulations can be performed both without any execution of metaorders and while interacting with the model and executing a metaorder;
-  4) "NMZI_trading.py" contains a class which allows to perform the execution of a metaorder with a naive trading strategy (costant speed) and it is employed by "NMZI.py".
+  4) "NMZI_trading.py" contains a class which allows to perform the execution of a metaorder with a naive trading strategy and it is employed by "NMZI.py".
 
 The folder "Examples" consists of:
   1) One Jupyter notebook where a LOBSTER data set is loaded, cleaned and the parameters of the model are estimated;
