@@ -3,7 +3,7 @@
 
 @author: Adele Ravagnani 
 
-This module contains a class which allows to perform the execution of a meta order with a naive trading strategy.
+This module contains a class which allows to perform the execution of a metaorder with a naive trading strategy.
 The trading is split in equally spaced (by a given trading interval) child MOs of unitary size and equal direction.
 This class is employed by the function "simulate_LOB_and_NaiveTrading" in the "NMZI.py" module.
 
@@ -15,17 +15,17 @@ import numpy as np
 class NaiveTrading:
     def __init__(self, trading_interval, total_childMOs, direction):
         """
-        This class allows to perform the execution of a meta order with a naive trading strategy.
+        This class allows to perform the execution of a metaorder with a naive trading strategy.
 
         Parameters
         ----------
         trading_interval : int
             This is the trading interval i.e. the time step (in event time) between 2 consecutive child MOs.
         total_childMOs : int
-            This is the number of the child MOs which constitue the meta order.
+            This is the number of the child MOs which constitue the metaorder.
         direction : int, it can be +1 or -1
-            If it is +1, we have a buy meta order and so, all child MOs are with a buy direction.
-            If it is -1, we have a sell meta order and so, all child MOs are with a sell direction.
+            If it is +1, we have a buy metaorder and so, all child MOs are with a buy direction.
+            If it is -1, we have a sell metaorder and so, all child MOs are with a sell direction.
 
         Returns
         -------
