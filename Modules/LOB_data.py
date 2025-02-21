@@ -3,7 +3,7 @@
 
 @author: Adele Ravagnani
 
-Module that defines a class to load and clean a LOBSTER dataset.
+Module that defines a class to load and clean a LOBSTER data set.
 This is made up of a "message file" and an "order book file" and it is related to a given asset and a given trading day.
 
 Reference to: https://lobsterdata.com, Bouchaud, J.-P., Bonart, J., Donier, J., & Gould, M. (2018). Trades, quotes and prices: Financial markets under the microscope. Cambridge University Press.
@@ -108,7 +108,7 @@ class LOB_data:
         self.message_file['Price'] = self.message_file['Price']/10000
         
         """
-        Then, we load the orderbook file.
+        Then, we load the order book file.
         
         Order book file format:
         ask price level 1, ask size level 1, bid price level 1, bid size level 1, ...
@@ -214,7 +214,7 @@ class LOB_data:
     
     def clean_crossed_prices_obs(self, verbose = True):
         """
-        Function which drops observations for which best ask prices are greater than their corresponding best bid prices.
+        Function which drops observations for which best ask prices are smaller than their corresponding best bid prices.
         
         Parameters
         ----------
@@ -246,7 +246,7 @@ class LOB_data:
         E.g.: consider a LO with volume of 1000 at the best ask price and an incoming buy MO of volume 1000 that is executed against the quote.
         The LOBSTER output of this trade depends on the composition of the volume at the best ask price:
        	(a) if we have 1 sell LO with volume 1000, then the LOBSTER output is one execution of volume 1000;
-       	(b) if we have 5 sell LOs with volume 200 each (ordered according to time of submission), the LOBSTER output shows 5 executions of volume 200 each with the same time stamp.
+       	(b) if we have 5 sell LOs with volume 200 each (ordered according to time of submission), the LOBSTER output shows 5 executions of volume 200 each with the same timestamp.
        
         Parameters
         ----------
@@ -293,9 +293,9 @@ class LOB_data:
     
     def handle_hidden_orders(self, flag_drop = True, verbose = True):
         """
-        Functions which handles the hidden orders. 
+        Function which handles the hidden orders. 
         (a) They are dropped;
-        (b) They are handled by reassigning their directions. Indeed, the direction of a trade is hard to evaluate (not observable) if the transaction has been executed against a hidden order (`order_type == 5’).
+        (b) They are handled by reassigning their directions. Indeed, the direction of a trade is hard to evaluate (not observable) if the transaction has been executed against an hidden order (`order_type == 5’).
             We create a proxy for the direction based on the executed price relative to the last observed order book snapshot. If self.message_file[k] is of type 5, then self.ob_file[k] = self.ob_file[k-1]
 
         Parameters
@@ -408,9 +408,9 @@ class LOB_data:
         Parameters
         ----------
         minutes_to_cut_beginning : int
-            Minutes at the beginning of the dataset that we want to drop.
+            Minutes at the beginning of the data set that we want to drop.
         minutes_to_cut_end : int
-            Minutes at the end of the dataset that we want to drop.
+            Minutes at the end of the data set that we want to drop.
         verbose : bool, optional
             If this variable is set to True, information about the process are printed. The default is True.
 
