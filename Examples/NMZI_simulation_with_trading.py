@@ -65,8 +65,8 @@ n_priority_ranks = 100
 p0 = 20877
 v0 = int(v_0)
 
-beta_exp_weighted_return = 1e-3
-beta_str = str(beta_exp_weighted_return)
+beta2_exp_weighted_return = 1e-3
+beta2_str = str(beta2_exp_weighted_return)
 intensity_exp_weighted_return = 1e-3
 alpha_str = str(intensity_exp_weighted_return)
 trading_interval = 20
@@ -85,7 +85,7 @@ parameters_trading_strategy = [trading_interval, total_shares, direction_trades_
 pool = mp.Pool(mp.cpu_count())
 store = pool.starmap(simulation_parallel, [(lam, mu, delta, mean_inter_arrival_times, number_tick_levels, n_priority_ranks, 
                        parameters_trading_strategy, number_levels_to_store, p0, v0, iterations_before_trading, iterations_after_trading, 
-                       iterations_to_equilibrium, beta_exp_weighted_return/(trading_interval + 1), 
+                       iterations_to_equilibrium, beta2_exp_weighted_return/(trading_interval + 1), 
                        intensity_exp_weighted_return, i) for i in range(N_sim)])
 pool.close()
 
@@ -107,7 +107,7 @@ for k in range(len(mid_price_n)):
 plt.plot([k for k in range(1, len(mid_price_store) + 1)], mid_price_store, 'r-', linewidth = 0.4)
 plt.ylabel('mid-price')
 plt.xlabel('market event')
-plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
+plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta2_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
 plt.savefig(folder + 'mid_price_all_sim.jpeg', dpi = 300)
 plt.close()
 
@@ -116,6 +116,6 @@ plt.grid()
 plt.errorbar([k + iterations_before_trading + 1 for k in range(len(exp_weighted_return_list_store))], exp_weighted_return_list_store, yerr = exp_weighted_return_list_store_std_err, fmt = 'o--', elinewidth = 0.6, ms = 2)
 plt.ylabel(r'$\bar{R}_t$')
 plt.xlabel(r'$t$ (market event)')
-plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
+plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta2_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
 plt.savefig(folder + 'exp_weighted_return.jpeg', dpi = 300)
 plt.close()
