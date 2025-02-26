@@ -20,7 +20,7 @@ import warnings
 
 import sys
 sys.path.append('/adeleravagnani/non-markovian-zero-intelligence-lob-model/Modules/')
-import NMSF_trading as NMSF_t
+import NMZI_trading as NMZI_t
 
 #%%
 
@@ -866,7 +866,7 @@ def simulate_LOB_and_NaiveTrading(lam, mu, delta, mean_inter_arrival_times,
 
     [trading_interval, total_childMOs_trading, direction] = parameters_trading_strategy
     
-    NaiveTrading_class = NMSF_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
+    NaiveTrading_class = NMZI_t.NaiveTrading(trading_interval, total_childMOs_trading, direction)
 
     print('Let us simulate the Non-Markovian Zero Intelligence model with the execution of a metaorder and a naive trading strategy.')
     print('We initialize the LOB ...')
