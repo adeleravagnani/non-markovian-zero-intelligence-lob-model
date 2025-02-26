@@ -105,6 +105,8 @@ for k in range(len(mid_price_n)):
   plt.plot([k for k in range(1, len(mid_price_n[k]) + 1)], mid_price_n[k], 'k-', linewidth = 0.2)
 
 plt.plot([k for k in range(1, len(mid_price_store) + 1)], mid_price_store, 'r-', linewidth = 0.4)
+plt.vlines(iterations_before_trading, np.min(np.array(mid_price_n)), np.max(np.array(mid_price_n)), colors = 'b', linestyles = 'dashed')
+plt.vlines(iterations_before_trading + trading_interval*total_shares + total_shares, np.min(np.array(mid_price_n)), np.max(np.array(mid_price_n)), colors = 'b', linestyles = 'dashed')
 plt.ylabel('mid-price')
 plt.xlabel('market event')
 plt.title(r'$\Delta = $' + str(trading_interval) + r', $\beta = $' + beta2_str + r'/($\Delta + 1)$, $\alpha = $' + alpha_str)
