@@ -1,6 +1,6 @@
 # non-markovian-zero-intelligence-lob-model
 
-This repository contains the implementation (in Python) of the Non-Markovian Zero Intelligence (NMZI) model, introduced in the paper: Ravagnani, A. and Lillo, F. (2025). Modeling metaorder impact with a Non-Markovian Zero Intelligence model. link. 
+This repository contains the implementation (in Python) of the Non-Markovian Zero Intelligence (NMZI) model, introduced in the paper: Ravagnani, A. and Lillo, F. (2025). Modeling metaorder impact with a Non-Markovian Zero Intelligence model. https://arxiv.org/abs/2503.05254. 
 
 The folder "Modules" consists of 4 modules:
   1) "LOB_data.py" defines a class to load and clean a LOBSTER data set;
@@ -12,6 +12,6 @@ The folder "Examples" consists of:
   1) One Jupyter notebook where a LOBSTER data set is loaded, cleaned and the parameters of the model are estimated;
   2) One script which shows how to run a simulation with the NMZI model while executing a metaorder.
 
-If you use this code in your work, please cite its location on Github: https://github.com/adeleravagnani/non-markovian-zero-intelligence-lob-model and the paper: Ravagnani, A. and Lillo, F. (2025). Modeling metaorder impact with a Non-Markovian Zero Intelligence model. link. 
+If you use this code in your work, please cite its location on Github: https://github.com/adeleravagnani/non-markovian-zero-intelligence-lob-model and the paper: Ravagnani, A. and Lillo, F. (2025). Modeling metaorder impact with a Non-Markovian Zero Intelligence model. https://arxiv.org/abs/2503.05254.
 
  If you have any inquiries or remarks, do not hesitate to contact the author Adele Ravagnani (adele.ravagnani@sns.it).
